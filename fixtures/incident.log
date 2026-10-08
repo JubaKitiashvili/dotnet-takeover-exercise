@@ -1,0 +1,20 @@
+# სრულად გამოგონილი, შერჩეული ჩანაწერები. ყველა timestamp UTC-შია.
+# მხოლოდ მე-3 ნაწილის ინციდენტი; ეს არ არის day 60 release-ის გაგრძელება.
+# სხვადასხვა ფაილისა და snapshot-ის ფრაგმენტები, არა სრული trace.
+2026-10-06T09:59:58Z source=SyncWorker event=partner_send_started attempt_id=example-01 timeout_ms=120000
+2026-10-06T10:01:58Z source=SyncWorker event=partner_timeout attempt_id=example-01 elapsed_ms=120000
+2026-10-06T10:02:00Z source=deployment event=PartnerAPI_release scope=stored_procedure_query_only schema_changed=false api_binary_changed=false previous_sp_script=available
+2026-10-06T10:04:58Z source=SyncWorker event=partner_send_started attempt_id=example-02 timeout_ms=120000
+2026-10-06T10:06:58Z source=SyncWorker event=partner_timeout attempt_id=example-02 elapsed_ms=120000
+2026-10-06T10:09:55Z source=SyncWorker event=transaction_started session_id=72 attempt_id=example-03 order_id=7000101 tenant_id=42
+2026-10-06T10:09:57Z source=SyncWorker event=local_status_updated session_id=72 attempt_id=example-03 order_id=7000101
+2026-10-06T10:09:58Z source=SyncWorker event=partner_send_started session_id=72 attempt_id=example-03 order_id=7000101 timeout_ms=120000
+2026-10-06T10:10:00Z source=incident_observation event=latency_report PartnerAPI_p95_before_ms=800 PartnerAPI_p95_now_ms=18000 PartnerAPI_timeout_percent=12 ServiceDesk_order_create=slow
+2026-10-06T10:10:00Z source=incident_observation event=database_health sql_cpu_percent=35 disk_latency=usual data_loss=unconfirmed
+2026-10-06T10:11:39Z source=PartnerAPI event=query_started request_id=example-api-84 session_id=84 tenant_id=42 day_utc=2026-10-06 operation=SELECT_Orders
+2026-10-06T10:11:43Z source=ServiceDesk event=query_started request_id=example-desk-91 session_id=91 operation=UPDATE_Orders
+2026-10-06T10:11:58Z source=SyncWorker event=partner_timeout session_id=72 attempt_id=example-03 order_id=7000101 elapsed_ms=120000
+2026-10-06T10:12:00Z source=read_only_snapshot session_id=72 last_operation=UPDATE_Orders transaction_state=open transaction_age_sec=125 session_status=sleeping last_app=SyncWorker
+2026-10-06T10:12:00Z source=read_only_snapshot session_id=84 app=PartnerAPI operation=SELECT wait_type=LCK_M_S blocking_session_id=72 elapsed_sec=21
+2026-10-06T10:12:00Z source=read_only_snapshot session_id=91 app=ServiceDesk operation=UPDATE wait_type=LCK_M_X blocking_session_id=72 elapsed_sec=17
+2026-10-06T10:12:00Z source=incident_observation event=backup_status jobs=green point_in_time_restore_in_this_scenario=untested
